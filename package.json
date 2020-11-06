@@ -36,7 +36,7 @@
     "start": "node ./server/index.js",
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
-    "build": "yarn run build-client && yarn run build-ssr",
+    "build": "npm run build-client && npm run build-ssr",
     "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
   }
 }
