@@ -1,6 +1,6 @@
-const merge = require("webpack-merge")
-const common = require("./webpack.common.js")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const merge = require("webpack-merge");
+const common = require("./webpack.common.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
   mode: "development",
@@ -9,7 +9,7 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[id].[hash].css",
-    })
+    }),
   ],
   module: {
     rules: [
@@ -18,14 +18,14 @@ module.exports = merge(common, {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader"
+            loader: "css-loader",
           },
           {
-            loader: "sass-loader"
-          }
-        ]
-      }
-    ]
+            loader: "sass-loader",
+          },
+        ],
+      },
+    ],
   },
   optimization: {
     splitChunks: {
@@ -33,9 +33,9 @@ module.exports = merge(common, {
         commons: {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
-          chunks: "all"
-        }
-      }
-    }
-  }
-})
+          chunks: "all",
+        },
+      },
+    },
+  },
+});
