@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+
 /**
 Variables - since less variables and only single sass file I'm keeping all at one place
 **/
@@ -12,9 +14,12 @@ $blueLink: blue;
 $transparentWhite: #ffffffe0;
 $liteGrey: #e2e2e2;
 $blueText: #0f2d80;
+// Font family
+$font-stack: "Roboto", sans-serif;
 
 /* Core Styles*/
 body {
+  font-family: $font-stack;
   background: $liteGrey;
 }
 h2 {
