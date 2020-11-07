@@ -2,9 +2,10 @@ import React from "react";
 import { Route, Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { createMemoryHistory } from "history";
+import loadable from "@loadable/component";
 
-import Footer from "./Footer";
-import Launch from "./Launch";
+const Footer = loadable(() => import("./Footer"), { ssr: true });
+const Launch = loadable(() => import("./Launch"), { ssr: true });
 
 import "../app.scss";
 

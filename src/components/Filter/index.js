@@ -1,7 +1,6 @@
 import React from "react";
 
 const Filter = ({ filters, setFilters }) => {
-  console.log(filters);
   return (
     <div className="filter">
       <div className="filterWrapper">

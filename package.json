@@ -5,11 +5,17 @@
   "main": "index.js",
   "author": "Kiran LM <kiran.lm96@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kiranlm/spacex-launcher-ui"
+  },
   "dependencies": {
+    "@loadable/component": "^5.14.1",
+    "compression": "^1.7.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router-dom": "5.1.2",
     "react-router": "^5.0.0",
+    "react-router-dom": "5.1.2",
     "request": "^2.88.0"
   },
   "devDependencies": {
@@ -19,8 +25,12 @@
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",
     "css-loader": "^2.1.1",
+    "css-minimizer-webpack-plugin": "^1.1.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "html-webpack-plugin": "^3.2.0",
     "ignore-loader": "^0.1.2",
+    "jest": "^26.6.3",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
@@ -32,11 +42,26 @@
     "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "start": "node ./server/index.js",
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
     "build": "npm run build-client && npm run build-ssr",
     "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "setupFiles": [
+      "./src/setupTest.js"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "babel-jest"
+    }
   }
 }

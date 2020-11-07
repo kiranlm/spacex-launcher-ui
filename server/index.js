@@ -4,11 +4,14 @@ const path = require("path");
 const fs = require("fs");
 const React = require("react");
 const { renderToNodeStream } = require("react-dom/server");
+const compression = require("compression");
 const url = require("url");
 
 // use the built main component
 const Main = require("./../dist-ssr/Main").default;
 const app = express();
+
+app.use(compression());
 
 // for spacex data
 const baseUrl = "https://api.spacexdata.com/v3/launches";

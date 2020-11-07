@@ -4,8 +4,9 @@ import { makeQueryString } from "../../helpers";
 import Filter from "../Filter";
 import { history } from "../Main";
 import Mission from "../Mission";
+import Loading from "../Loading";
 
-const Launch = (props) => {
+const Launch = () => {
   // states
   const [spacexData, setSpacexData] = useState([]); // API data holds in this state
   const [loading, setLoading] = useState(false); // loading indication
@@ -19,7 +20,6 @@ const Launch = (props) => {
   useEffect(() => {
     // window.launchData will contain initial data from server as stringified format
     // If data then it takes else get from API call
-    console.log(window.launchData);
     if (window.launchData) {
       try {
         const spacexDataFromServer = JSON.parse(window.launchData);
@@ -43,7 +43,6 @@ const Launch = (props) => {
     // Call only if filters are not null
     if (filters.landSuccess || filters.launchSuccess || filters.launchYear) {
       const query = makeQueryString(filters);
-      console.log(history);
       history.push({
         pathname: "/",
         search: query,
@@ -61,11 +60,7 @@ const Launch = (props) => {
 
   return (
     <div className="mainContainer">
-      {loading && (
-        <div className="loadingContainer">
-          <div className="loading"></div>
-        </div>
-      )}
+      {loading && <Loading />}
       <div className="filterContainer">
         <Filter filters={filters} setFilters={setFilters} />
       </div>

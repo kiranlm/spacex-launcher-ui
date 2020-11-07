@@ -10,23 +10,30 @@ const Mission = (props) => {
     <div className="mission">
       <div className="misionDetails">
         <div className="imageContainer">
-          <img src={mission.links && mission.links.mission_patch_small} />
+          <img
+            src={mission.links && mission.links.mission_patch_small}
+            alt={`image-${mission.flight_number}`}
+            width="170"
+            height="170"
+          />
         </div>
         <a>
           {mission.mission_name} #{mission.flight_number}
         </a>
         <div>Mission Ids:</div>
-        <ul>
-          {mission.mission_id &&
-          Array.isArray(mission.mission_id) &&
-          mission.mission_id.length ? (
-            mission.mission_id.map((item, key) => (
+
+        {mission.mission_id &&
+        Array.isArray(mission.mission_id) &&
+        mission.mission_id.length ? (
+          <ul>
+            {mission.mission_id.map((item, key) => (
               <li key={`mission-id-${key}`}>{item}</li>
-            ))
-          ) : (
-            <span>N/A</span>
-          )}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <span>N/A</span>
+        )}
+
         <div>
           Launch Year: <span>{mission.launch_year}</span>
         </div>
