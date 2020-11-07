@@ -10,7 +10,7 @@ const Launch = () => {
   // Query params from url
   const queryParams = getQueryParams();
   let initialFilters = {
-    limit: 100,
+    limit: null,
     launchYear: null,
     launchSuccess: null,
     landSuccess: null,
@@ -35,7 +35,7 @@ const Launch = () => {
         console.log("Error", e);
       }
     } else {
-      const query = makeQueryString(filters);
+      const query = makeQueryString({ ...filters, ...{ limit: 100 } });
       setLoading(true);
       getSpacexData(query)
         .then((data) => {
@@ -49,7 +49,12 @@ const Launch = () => {
   // On changing filter, trigger API call
   useEffect(() => {
     // Call only if filters are not null
-    if (filters.landSuccess || filters.launchSuccess || filters.launchYear) {
+    if (
+      filters.limit ||
+      filters.landSuccess ||
+      filters.launchSuccess ||
+      filters.launchYear
+    ) {
       const query = makeQueryString(filters);
       history.push({
         pathname: "/",
