@@ -47,13 +47,29 @@ const Launch = () => {
     }
   }, []);
   // On changing filter, trigger API call
-  useEffect(() => {
+  const useEffectExceptOnMount = (effect, dependencies) => {
+    const mounted = React.useRef(false);
+    React.useEffect(() => {
+      if (mounted.current) {
+        const unmount = effect();
+        return () => unmount && unmount();
+      } else {
+        mounted.current = true;
+      }
+    }, dependencies);
+
+    // Reset on unmount for the next mount.
+    React.useEffect(() => {
+      return () => (mounted.current = false);
+    }, []);
+  };
+  useEffectExceptOnMount(() => {
     // Call only if filters are not null
     if (
-      filters.limit ||
-      filters.landSuccess ||
-      filters.launchSuccess ||
-      filters.launchYear
+      filters.limit !== null ||
+      filters.landSuccess !== null ||
+      filters.launchSuccess !== null ||
+      filters.launchYear !== null
     ) {
       const query = makeQueryString(filters);
       history.push({
