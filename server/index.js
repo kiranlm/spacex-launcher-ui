@@ -59,11 +59,6 @@ app.get("/", (req, res) => {
   );
 });
 
-// for ssr local dev
-app.get("/client", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./../dist/index.html"));
-});
-
 app.use(express.static(path.join(__dirname, "./../dist")));
 
 // port
