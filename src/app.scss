@@ -10,12 +10,28 @@ $green: #caedb0;
 $greenShadow: #9ed582;
 $darkgreen: #209b01;
 $darkgreenShadow: #3c6427;
-$blueLink: blue;
+$blueLink: #0606c7;
 $transparentWhite: #ffffffe0;
 $liteGrey: #e2e2e2;
 $blueText: #0f2d80;
 // Font family
 $font-stack: "Roboto", sans-serif;
+
+@mixin buttonStyle {
+  background: $green;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: inset 0px 0px 1px 1px $greenShadow;
+  border: none;
+  padding: 2px;
+}
+
+.activeItem {
+  background: $darkgreen;
+  box-shadow: inset -1px -1px 2px 1px $darkgreenShadow;
+  color: $white;
+}
 
 /* Core Styles*/
 body {
@@ -59,27 +75,32 @@ hr {
           display: grid;
           grid-gap: 1rem;
           grid-template-columns: repeat(2, 1fr);
-          .activeItem {
-            background: $darkgreen;
-            box-shadow: inset -1px -1px 2px 1px $darkgreenShadow;
-            color: $white;
-          }
           .filterItem {
-            background: $green;
-            text-align: center;
-            border-radius: 5px;
-            font-size: 16px;
-            box-shadow: inset 0px 0px 1px 1px $greenShadow;
-            border: none;
-            padding: 2px;
+            @include buttonStyle;
             &.selected {
               @extend .activeItem;
             }
             &:hover {
               @extend .activeItem;
             }
-            &:focus {
-              border: none;
+          }
+        }
+        .filterReset {
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          margin-top: 1rem;
+          .filterItem {
+            @include buttonStyle;
+            padding: 0.2rem 0.4rem;
+            background: $white;
+            box-shadow: inset 0px 0px 1px 1px $bgGrey;
+            &.selected {
+              @extend .activeItem;
+            }
+            &:hover {
+              @extend .activeItem;
             }
           }
         }
@@ -192,6 +213,10 @@ hr {
       }
     }
   }
+}
+.footerText {
+  text-align: center;
+  font-size: 18px;
 }
 // Meduim devices
 @media (max-width: 1024px) and (min-width: 701px) {

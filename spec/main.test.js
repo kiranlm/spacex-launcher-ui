@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import Main from "../src/components/Main";
-// import Launch from "../src/components/Launch";
 import Filter from "../src/components/Filter";
 
 it("Main renders correctly", () => {

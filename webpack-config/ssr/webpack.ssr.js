@@ -20,7 +20,6 @@ const config = {
       { test: /\.(scss|css)$/, loader: "ignore-loader" },
     ],
   },
-
   plugins: [new CleanWebpackPlugin()],
 };
 

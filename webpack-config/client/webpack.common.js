@@ -10,13 +10,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "",
-      filename: "ssr.html",
-      template: path.resolve(__dirname, "./../../html/ssr.html"),
-    }),
-    new HtmlWebpackPlugin({
       filename: "index.html",
-      title: "",
-      template: path.resolve(__dirname, "./../../index.html"),
+      template: path.resolve(__dirname, "./../../html/index.html"),
     }),
   ],
   output: {

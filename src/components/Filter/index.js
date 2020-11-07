@@ -14,8 +14,9 @@ const Filter = ({ filters, setFilters }) => {
                 onClick={() => {
                   setFilters({ ...filters, ...{ launchYear: 2006 + i } });
                 }}
+                aria-label={2006 + i}
                 className={`filterItem ${
-                  filters.launchYear === 2006 + i ? "selected" : ""
+                  parseInt(filters.launchYear) === 2006 + i ? "selected" : ""
                 }`}
                 key={`year-${i}`}>
                 {2006 + i}
@@ -28,7 +29,12 @@ const Filter = ({ filters, setFilters }) => {
         <hr />
         <div className="filters">
           <button
-            className={`filterItem ${filters.launchSuccess ? "selected" : ""}`}
+            className={`filterItem ${
+              filters.launchSuccess === "true" || filters.launchSuccess === true
+                ? "selected"
+                : ""
+            }`}
+            aria-label="True"
             onClick={() => {
               setFilters({ ...filters, ...{ launchSuccess: true } });
             }}>
@@ -36,8 +42,12 @@ const Filter = ({ filters, setFilters }) => {
           </button>
           <button
             className={`filterItem ${
-              filters.launchSuccess === false ? "selected" : ""
+              filters.launchSuccess === false ||
+              filters.launchSuccess === "false"
+                ? "selected"
+                : ""
             }`}
+            aria-label="False"
             onClick={() => {
               setFilters({ ...filters, ...{ launchSuccess: false } });
             }}>
@@ -50,7 +60,12 @@ const Filter = ({ filters, setFilters }) => {
         <hr />
         <div className="filters">
           <button
-            className={`filterItem ${filters.landSuccess ? "selected" : ""}`}
+            className={`filterItem ${
+              filters.landSuccess === "true" || filters.landSuccess === true
+                ? "selected"
+                : ""
+            }`}
+            aria-label="True"
             onClick={() => {
               setFilters({ ...filters, ...{ landSuccess: true } });
             }}>
@@ -58,12 +73,25 @@ const Filter = ({ filters, setFilters }) => {
           </button>
           <button
             className={`filterItem ${
-              filters.landSuccess === false ? "selected" : ""
+              filters.landSuccess === false || filters.landSuccess === "false"
+                ? "selected"
+                : ""
             }`}
+            aria-label="False"
             onClick={() => {
               setFilters({ ...filters, ...{ landSuccess: false } });
             }}>
             False
+          </button>
+        </div>
+        <div className="filterReset">
+          <button
+            className="filterItem"
+            aria-label="Reset"
+            onClick={() => {
+              setFilters({ limit: 100 });
+            }}>
+            Reset
           </button>
         </div>
       </div>

@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   }`;
   // ssr template
   const html = fs.readFileSync(
-    path.resolve(__dirname, `./../dist/ssr.html`),
+    path.resolve(__dirname, `./../dist/index.html`),
     "utf-8"
   );
   // split from {content}, take 2 parts say head and tail, then join the tail with the data

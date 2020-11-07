@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { getSpacexData } from "../../services/api";
-import { makeQueryString } from "../../helpers";
+import { getQueryParams, makeQueryString } from "../../helpers";
 import Filter from "../Filter";
 import { history } from "../Main";
 import Mission from "../Mission";
 import Loading from "../Loading";
 
 const Launch = () => {
-  // states
-  const [spacexData, setSpacexData] = useState([]); // API data holds in this state
-  const [loading, setLoading] = useState(false); // loading indication
-  // Filters
-  const [filters, setFilters] = useState({
+  // Query params from url
+  const queryParams = getQueryParams();
+  let initialFilters = {
     limit: 100,
     launchYear: null,
     launchSuccess: null,
     landSuccess: null,
-  });
+    ...queryParams,
+  };
+  // if (Object.keys(queryParams).length) {
+  //   initialFilters = { ...initialFilters, ...queryParams };
+  // }
+  // states
+  const [spacexData, setSpacexData] = useState([]); // API data holds in this state
+  const [loading, setLoading] = useState(false); // loading indication
+  // Filters
+  const [filters, setFilters] = useState(initialFilters);
   useEffect(() => {
     // window.launchData will contain initial data from server as stringified format
     // If data then it takes else get from API call
@@ -28,8 +35,9 @@ const Launch = () => {
         console.log("Error", e);
       }
     } else {
+      const query = makeQueryString(filters);
       setLoading(true);
-      getSpacexData("?limit=100")
+      getSpacexData(query)
         .then((data) => {
           setSpacexData(data);
         })
