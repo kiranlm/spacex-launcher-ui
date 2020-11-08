@@ -1,6 +1,7 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const config = {
   mode: "production",
@@ -20,7 +21,19 @@ const config = {
       { test: /\.(scss|css)$/, loader: "ignore-loader" },
     ],
   },
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new UglifyJsPlugin({
+      test: /\.js$/,
+      exclude: /node_modules/,
+      sourceMap: true,
+      uglifyOptions: {
+        sourceMap: false,
+        compress: true,
+        mangle: true,
+      },
+    }),
+  ],
 };
 
 module.exports = config;
