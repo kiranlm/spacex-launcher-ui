@@ -18,9 +18,7 @@ const Launch = () => {
     landSuccess: null,
     ...queryParams,
   };
-  // if (Object.keys(queryParams).length) {
-  //   initialFilters = { ...initialFilters, ...queryParams };
-  // }
+
   // states
   const [spacexData, setSpacexData] = useState([]); // API data holds in this state
   const [loading, setLoading] = useState(false); // loading indication

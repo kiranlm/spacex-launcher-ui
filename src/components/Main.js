@@ -4,8 +4,8 @@ import { createBrowserHistory } from "history";
 import { createMemoryHistory } from "history";
 import loadable from "@loadable/component";
 
-const Footer = loadable(() => import("./Footer"), { ssr: true });
 const Launch = loadable(() => import("./Launch"), { ssr: true });
+const Footer = loadable(() => import("./Footer"), { ssr: true });
 
 import "../app.scss";
 

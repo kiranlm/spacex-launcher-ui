@@ -22,7 +22,12 @@ module.exports = {
       skipWaiting: true,
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "static", to: "static" }],
+      patterns: [
+        { from: "static/images", to: "static" },
+        { from: "static/robots.txt", to: "robots.txt" },
+        { from: "static/manifest.json", to: "static/manifest.json" },
+        { from: "static/asset-manifest.json", to: "asset-manifest.json" },
+      ],
       options: {
         concurrency: 100,
       },
