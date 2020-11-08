@@ -1,4 +1,5 @@
 import React from "react";
+import LazyImage from "./LazyImage";
 /**
  *
  * @param {Object} props | contains mission details
@@ -10,11 +11,9 @@ const Mission = (props) => {
     <div className="mission">
       <div className="misionDetails">
         <div className="imageContainer">
-          <img
+          <LazyImage
             src={mission.links && mission.links.mission_patch_small}
             alt={`image-${mission.flight_number}`}
-            width="170"
-            height="170"
           />
         </div>
         <a>
