@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Filter = ({ filters, setFilters }) => {
   return (
@@ -97,6 +98,16 @@ const Filter = ({ filters, setFilters }) => {
       </div>
     </div>
   );
+};
+
+Filter.propTypes = {
+  filters: PropTypes.shape({
+    launchYear: PropTypes.number,
+    landSuccess: PropTypes.bool,
+    landSuccess: PropTypes.bool,
+    limit: PropTypes.number,
+  }),
+  setFilters: PropTypes.func,
 };
 
 export default Filter;

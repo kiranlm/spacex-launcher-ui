@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import LazyImage from "./LazyImage";
 /**
  *
@@ -16,7 +17,7 @@ const Mission = (props) => {
             alt={`image-${mission.flight_number}`}
           />
         </div>
-        <a>
+        <a href="#">
           {mission.mission_name} #{mission.flight_number}
         </a>
         <div>Mission Ids:</div>
@@ -58,4 +59,23 @@ const Mission = (props) => {
     </div>
   );
 };
+
+Mission.propTypes = {
+  mission: PropTypes.shape({
+    flight_number: PropTypes.string,
+    launch_year: PropTypes.number,
+    launch_success: PropTypes.bool,
+    landSuccess: PropTypes.bool,
+    links: PropTypes.shape({
+      mission_patch_small: PropTypes.string,
+    }),
+    mission_id: PropTypes.array,
+    rocket: PropTypes.shape({
+      first_stage: PropTypes.shape({
+        cores: PropTypes.array,
+      }),
+    }),
+  }),
+};
+
 export default Mission;

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import loadable from "@loadable/component";
 import { getSpacexData } from "../../services/api";
 import { getQueryParams, makeQueryString } from "../../helpers";
-import Filter from "../Filter";
 import { history } from "../Main";
 import Mission from "../Mission";
 import Loading from "../Loading";
+
+const Filter = loadable(() => import("../Filter"), { ssr: true });
 
 const Launch = () => {
   // Query params from url

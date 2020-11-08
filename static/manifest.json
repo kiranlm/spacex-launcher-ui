@@ -1,0 +1,21 @@
+{
+  "short_name": "SpaceX App",
+  "name": "SpaceX Launch programs",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "../",
+  "display": "standalone",
+  "theme_color": "#caedb0",
+  "background_color": "#e2e2e2"
+}
