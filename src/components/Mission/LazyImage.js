@@ -25,6 +25,7 @@ function LazyImage({ src, alt }) {
       onLoad={() => setLoaded(true)}
       className={loaded ? "loaded" : ""}
       width="170"
+      height="170"
     />
   );
 }

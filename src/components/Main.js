@@ -19,12 +19,10 @@ export const history = selectedHistory();
 const Main = () => {
   return (
     <Router history={history}>
-      <div className="app">
-        <h2>SpaceX Launch Programs</h2>
-        <Route exact path="/" component={Launch} />
-        <div className="footer">
-          <Footer />
-        </div>
+      <h2>SpaceX Launch Programs</h2>
+      <Route exact path="/" component={Launch} />
+      <div className="footer">
+        <Footer />
       </div>
     </Router>
   );
