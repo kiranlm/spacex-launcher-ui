@@ -26,8 +26,8 @@ describe("Filters", () => {
     const wrapper = mount(<Filter filters={filters} setFilters={setFilters} />);
     expect(wrapper.props().filters).toEqual(filters);
   });
-  it("Renders 19 filters", () => {
-    expect(wrapper.find("button").length).toEqual(19);
+  it("Renders 20 filters including reset button", () => {
+    expect(wrapper.find("button").length).toEqual(20);
   });
   it("First filter shoulbe 2006", () => {
     const button = wrapper.find("button").at(0);
