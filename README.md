@@ -13,9 +13,9 @@
 
 ### Scripts to run
 
-- `build` : Production build, will combine `build-client` and `build-ssr`
+- `build` : Production build, will create all the client side bundles and also copy the server script to dist-ssr directory
 - `start:dev` : Local development start
-- `start` : Start server with build files
+- `start` : Start server with copied file `ssr-dist/index.js`
 - `test`: To run the tests
 
 ### Major packages
@@ -39,26 +39,26 @@
 │
 └───src
 │   └───components
-│   │   ...
-|   |   └───
-|   |       |...
+│   │   ... all the functional components
 │   └───services
-│   |   ...
+│   |   ... service files
 |   App.js
 |   app.scss
+│   └───helpers
+|       |
+|        ... helper functions
 │
 └───webpack-config
-|       └───client
-|       |   |
-|       |   webpack.common.js
-|       |   webpack.dev.js
-|       |   webpack.prod.js
-|       └───ssr
-|           |
-|           webpack.ssr.js
+|       |
+|       webpack.common.js
+|       webpack.dev.js
+|       webpack.prod.js
 └───server
 |   |
 |   index.js
+└───static
+|   |
+|    ... static files like images, icons etc
 └───spec
     |
     main.test.js
