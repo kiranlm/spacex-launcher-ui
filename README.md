@@ -10,6 +10,7 @@
 - Hands on code
 - Unit tests using jest and enzyme
 - Deployed as container on Heroku
+- CI/CD using circleci to Heroku
 
 ### Scripts to run
 
@@ -35,6 +36,7 @@
 |   ...
 └───package.json
 └───Dockerfile
+└───.circleci
 │
 └───src
 │   └───components

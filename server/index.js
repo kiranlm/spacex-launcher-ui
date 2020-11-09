@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 import { renderToNodeStream } from "react-dom/server";
-import request from "request";
+import fetch from "node-fetch";
 import url from "url";
 import Main from "../src/components/Main";
 
@@ -27,21 +27,18 @@ app.get("/", (req, res) => {
     "utf-8"
   );
   // split from {content}, take 2 parts say head and tail, then join the tail with the data
-  const [head, tail] = html.split("{content}");
+  const [head, tail] = html.split(`<span id="content"/>`);
   res.write(head);
   // call service - since this is the only call, I'm not moving it to any other file
-  request(
-    {
-      method: "GET",
-      url: requUrl,
-    },
-    (_err, _httpsRes, body) => {
+  fetch(requUrl)
+    .then((res) => res.json())
+    .then((jsonData) => {
       // join the response in tail on {script} section in template
-      const newTail = tail.split("{script}").join(`
-      <script id="ssr__script">
-        window.launchData = ${JSON.stringify(body)}
-      </script>
-      `);
+      const newTail = tail.split(`<span id="script"/>`).join(`
+            <script id="ssr__script">
+              window.__SPACEX_DATA__ = ${JSON.stringify(jsonData)}
+            </script>
+            `);
       // our main component
       const stream = renderToNodeStream(<Main />);
       stream.pipe(res, { end: false });
@@ -49,8 +46,7 @@ app.get("/", (req, res) => {
         res.write(newTail);
         res.end();
       });
-    }
-  );
+    });
 });
 
 app.use(express.static(path.join(__dirname, "./../dist")));

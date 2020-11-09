@@ -25,11 +25,10 @@ const Launch = () => {
   // Filters
   const [filters, setFilters] = useState(initialFilters);
   useEffect(() => {
-    // window.launchData will contain initial data from server as stringified format
+    // window.__SPACEX_DATA__ will contain initial data from server as stringified format
     // If data then it takes else get from API call
-    if (window.launchData) {
-      const spacexDataFromServer = JSON.parse(window.launchData);
-      setSpacexData(spacexDataFromServer);
+    if (window.__SPACEX_DATA__) {
+      setSpacexData(window.__SPACEX_DATA__);
     } else {
       const query = makeQueryString({ ...filters, ...{ limit: 100 } });
       setLoading(true);
