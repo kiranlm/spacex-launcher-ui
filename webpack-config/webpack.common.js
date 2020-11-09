@@ -6,14 +6,14 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "./../../src/App.js"),
+    spacex: path.resolve(__dirname, "./../src/App.js"),
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "",
       filename: "index.html",
-      template: path.resolve(__dirname, "./../../html/index.html"),
+      template: path.resolve(__dirname, "./../html/index.html"),
     }),
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
@@ -34,9 +34,8 @@ module.exports = {
     }),
   ],
   output: {
-    filename: "[name].[chunkhash].js",
-    path: path.resolve(__dirname, "./../../dist"),
-    publicPath: "/",
+    filename: "[name][chunkhash].js",
+    path: path.resolve(__dirname, "./../dist"),
   },
   module: {
     rules: [

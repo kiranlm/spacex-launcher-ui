@@ -1,27 +1,22 @@
-const express = require("express");
-const request = require("request");
-const path = require("path");
-const fs = require("fs");
-const React = require("react");
-const { renderToNodeStream } = require("react-dom/server");
-const compression = require("compression");
-const url = require("url");
+import compression from "compression";
+import express from "express";
+import fs from "fs";
+import path from "path";
+import React from "react";
+import { renderToNodeStream } from "react-dom/server";
+import request from "request";
+import url from "url";
+import Main from "../src/components/Main";
 
-// use the built main component
-const Main = require("./../dist-ssr/Main").default;
 const app = express();
 
 app.use(compression());
 
-// for spacex data
-const baseUrl = "https://api.spacexdata.com/v3/launches";
-
-// root url
 app.get("/", (req, res) => {
   // To get the query string
   const queryStr = url.parse(req.url, true);
   // make the query string with filters from client
-  const requUrl = `${baseUrl}${
+  const requUrl = `https://api.spacexdata.com/v3/launches${
     queryStr.search && queryStr.search.trim() !== ""
       ? queryStr.search
       : "?limit=100"
@@ -48,8 +43,7 @@ app.get("/", (req, res) => {
       </script>
       `);
       // our main component
-      const reactElement = React.createElement(Main);
-      const stream = renderToNodeStream(reactElement);
+      const stream = renderToNodeStream(<Main />);
       stream.pipe(res, { end: false });
       stream.on("end", () => {
         res.write(newTail);
@@ -60,6 +54,31 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, "./../dist")));
+
+app.get("*", (_req, res) => {
+  res.status(404).send(`
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="SpaceX launch program list using React SSR" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="theme-color" content="#caedb0"/>
+        <link rel="manifest" href="static/manifest.json" />
+        <link rel="shortcut icon" href="static/favicon.ico" />
+        <link rel="apple-touch-icon" href="static/icon.png"/>
+        <title>SpaceX Launcher</title>
+        <style>
+          body { font-family: Arial, sans-serif; font-size: 15px; }
+          h1 { color: #c7c7c7; text-align: center; }
+        </style>
+      </head>
+
+      <body>
+        <h1>404 - Not Found</h1>
+      </body>
+    </html>`);
+});
 
 // port
 const PORT = process.env.PORT || 8080;

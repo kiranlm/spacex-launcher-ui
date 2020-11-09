@@ -12,6 +12,7 @@
   "dependencies": {
     "@loadable/component": "^5.14.1",
     "compression": "^1.7.4",
+    "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -47,11 +48,9 @@
   },
   "scripts": {
     "test": "jest --watch",
-    "start": "node ./server/index.js",
-    "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
-    "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
-    "build": "npm run build-client && npm run build-ssr",
-    "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
+    "start": "node ./dist-ssr/index.js",
+    "build": "webpack --config ./webpack-config/webpack.prod.js",
+    "start:dev": "webpack-dev-server --config ./webpack-config/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
   },
   "jest": {
     "verbose": true,
