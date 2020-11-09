@@ -1,5 +1,4 @@
 import React from "react";
-import { Route, Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { createMemoryHistory } from "history";
 import loadable from "@loadable/component";
@@ -18,13 +17,11 @@ export const history = selectedHistory();
 
 const Main = () => {
   return (
-    <Router history={history}>
+    <React.Fragment>
       <h2>SpaceX Launch Programs</h2>
-      <Route exact path="/" component={Launch} />
-      <div className="footer">
-        <Footer />
-      </div>
-    </Router>
+      <Launch />
+      <Footer />
+    </React.Fragment>
   );
 };
 export default Main;

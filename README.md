@@ -21,7 +21,6 @@
 ### Major packages
 
 - [x] "react": "16.13.1"
-- [x] "react-router": "5.0.0"
 - [x] "jest": "26.6.3"
 - [x] "webpack": "4.44.2"
 - [x] "@loadable/component": "5.14.1"
@@ -72,11 +71,8 @@
 
 ### Lighthouse score
 
-> Desktop score
-> ![Desktop view](https://images2.imgbox.com/b9/ab/ZXT5xIVs_o.png)
-
-> Mobile score
-> ![enter image description here](https://images2.imgbox.com/0a/e6/GcWH8Q82_o.png)
+> Desktop score : [click here to see the report](https://github.com/kiranlm/spacex-launcher-ui/blob/master/reports/report.pdf)  
+> ![Desktop view](https://images2.imgbox.com/b0/39/CCbQJWjN_o.png)
 
 ### Screenshots
 

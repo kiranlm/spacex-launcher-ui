@@ -108,69 +108,65 @@ hr {
       }
     }
   }
-  .launchContainer {
+  .missionContainer {
+    max-width: 1440px;
     margin: 0 auto;
-    .missionContainer {
-      max-width: 1440px;
-      margin: 0 auto;
-      display: grid;
-      grid-gap: 1rem;
-      .mission {
-        background-color: $white;
-        color: $black;
-        height: auto;
-        padding: 1rem 1.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 7px;
-        width: 215px;
-        a {
-          color: $blueLink;
-          font-weight: bold;
-          margin-top: 1rem;
-          display: block;
-          text-decoration: none;
+    display: grid;
+    grid-gap: 1rem;
+    .mission {
+      background-color: $white;
+      color: $black;
+      height: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 7px;
+      width: 215px;
+      a {
+        color: $blueLink;
+        font-weight: bold;
+        margin-top: 1rem;
+        display: block;
+        text-decoration: none;
+      }
+      .misionDetails {
+        margin: 0 auto;
+        width: 90%;
+        > div {
+          font-weight: 700;
+          font-weight: 700;
+          margin-top: 0.5rem;
         }
-        .misionDetails {
+        > ul {
+          margin: 0.3rem;
+        }
+        > div > span,
+        li {
+          font-weight: 500;
+          font-style: italic;
+          font-size: 17px;
+          color: $blueText;
+        }
+        .imageContainer {
+          background: $bgGrey;
+          display: flex;
+          justify-content: center;
+          min-width: 180px;
+          min-height: 180px;
           margin: 0 auto;
-          width: 90%;
-          > div {
-            font-weight: 700;
-            font-weight: 700;
-            margin-top: 0.5rem;
-          }
-          > ul {
-            margin: 0.3rem;
-          }
-          > div > span,
-          li {
-            font-weight: 500;
-            font-style: italic;
-            font-size: 17px;
-            color: $blueText;
-          }
-          .imageContainer {
-            background: $bgGrey;
-            display: flex;
-            justify-content: center;
-            min-width: 180px;
-            min-height: 180px;
+          img {
+            padding: 0.5rem;
             margin: 0 auto;
-            img {
-              padding: 0.5rem;
-              margin: 0 auto;
-            }
           }
         }
       }
-      .noDataMessage {
-        padding: 0.5rem 3rem;
-        border: 2px dotted $bgGrey;
-        background: $white;
-        margin: 0.5rem auto;
-        max-width: 300px;
-      }
+    }
+    .noDataMessage {
+      padding: 0.5rem 3rem;
+      background: $white;
+      margin: 0.5rem auto;
+      max-width: 300px;
     }
   }
 }
@@ -206,19 +202,16 @@ hr {
       margin: 0.5rem auto;
       max-width: 300px;
     }
-    .launchContainer {
-      width: 100%;
-      .missionContainer {
-        .mission {
-          width: 100%;
-          padding: 1rem 0rem;
-          margin: 0.5rem auto;
-          max-width: 300px;
-          .misionDetails {
-            .imageContainer {
-              width: auto;
-              height: auto;
-            }
+    .missionContainer {
+      .mission {
+        width: 100%;
+        padding: 1rem 0rem;
+        margin: 0.5rem auto;
+        max-width: 300px;
+        .misionDetails {
+          .imageContainer {
+            width: auto;
+            height: auto;
           }
         }
       }
