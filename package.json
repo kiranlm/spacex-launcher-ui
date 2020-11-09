@@ -51,6 +51,7 @@
     "build": "webpack --config ./webpack-config/webpack.prod.js",
     "start:dev": "webpack-dev-server --config ./webpack-config/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
   },
+  "heroku-run-build-script": true,
   "jest": {
     "verbose": true,
     "testPathIgnorePatterns": [

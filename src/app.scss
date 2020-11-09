@@ -41,6 +41,10 @@ body {
 h2 {
   margin: 0 1.5rem;
 }
+h3 {
+  margin: 0;
+  width: 100%;
+}
 hr {
   margin: 5px auto;
   width: 90%;
@@ -72,9 +76,9 @@ hr {
         }
         .filters {
           margin: 0 auto;
-          width: 8rem;
+          min-width: 9rem;
           display: grid;
-          grid-gap: 1rem;
+          grid-gap: 1rem 2rem;
           grid-template-columns: repeat(2, 1fr);
           .filterItem {
             @include buttonStyle;

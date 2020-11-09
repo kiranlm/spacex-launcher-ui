@@ -62,8 +62,8 @@ const Mission = (props) => {
 
 Mission.propTypes = {
   mission: PropTypes.shape({
-    flight_number: PropTypes.string,
-    launch_year: PropTypes.number,
+    flight_number: PropTypes.number,
+    launch_year: PropTypes.string,
     launch_success: PropTypes.bool,
     landSuccess: PropTypes.bool,
     links: PropTypes.shape({

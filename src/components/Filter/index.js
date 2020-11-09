@@ -5,6 +5,7 @@ const Filter = ({ filters, setFilters }) => {
   return (
     <div className="filter">
       <div className="filterWrapper">
+        <h3>Filters</h3>
         <div className="filterLabel">Launch Year</div>
         <hr />
         <div className="filters">
@@ -102,10 +103,13 @@ const Filter = ({ filters, setFilters }) => {
 
 Filter.propTypes = {
   filters: PropTypes.shape({
-    launchYear: PropTypes.number,
-    landSuccess: PropTypes.bool,
-    landSuccess: PropTypes.bool,
-    limit: PropTypes.number,
+    launchYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    landSuccess: PropTypes.PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
+    landSuccess: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    limit: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   }),
   setFilters: PropTypes.func,
 };
