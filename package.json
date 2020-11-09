@@ -46,7 +46,7 @@
     "workbox-webpack-plugin": "^5.1.4"
   },
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
     "start": "node ./dist-ssr/index.js",
     "build": "webpack --config ./webpack-config/webpack.prod.js",
     "start:dev": "webpack-dev-server --config ./webpack-config/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
