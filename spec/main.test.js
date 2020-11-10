@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import Main from "../src/components/Main";
-import Filter from "../src/components/Filter";
+import Filter from "../src/components/Launch/Filter";
 
 it("Main renders correctly", () => {
   shallow(<Main />);
@@ -16,10 +16,10 @@ it("renders top header", () => {
 describe("Filters", () => {
   const setFilters = jest.fn();
   const filters = {
-    limit: 100,
-    launchYear: null,
-    launchSuccess: null,
-    landSuccess: null,
+    limit: "100",
+    launch_year: null,
+    launch_success: null,
+    land_success: null,
   };
   const wrapper = mount(<Filter filters={filters} setFilters={setFilters} />);
   it("Renders year filter", () => {

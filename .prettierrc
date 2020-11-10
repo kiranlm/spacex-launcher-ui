@@ -6,5 +6,6 @@
     "arrowParens": "always",
     "requirePragma": true,
     "insertPragma": true,
-    "printWidth": 80
+    "printWidth": 80,
+    "doublQuotes": true
 }

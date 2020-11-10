@@ -4,23 +4,32 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 import { renderToNodeStream } from "react-dom/server";
-import fetch from "node-fetch";
+import { Provider as ReduxProvider } from "react-redux";
 import url from "url";
 import Main from "../src/components/Main";
+import { configureStore } from "../src/redux";
+import { getSpacexData } from "../src/services/api";
 
 const app = express();
 
 app.use(compression());
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   // To get the query string
   const queryStr = url.parse(req.url, true);
   // make the query string with filters from client
-  const requUrl = `https://api.spacexdata.com/v3/launches${
-    queryStr.search && queryStr.search.trim() !== ""
-      ? queryStr.search
-      : "?limit=100"
-  }`;
+  const queryUrl = `${queryStr.search && queryStr.search.trim() !== ""
+    ? queryStr.search
+    : "?limit=100"
+    }`;
+  const data = await getSpacexData(queryUrl)
+  const store = configureStore({
+    loading: false,
+    spacexData: data,
+  });
+
+  const { spacexData } = store.getState()
+
   // ssr template
   const html = fs.readFileSync(
     path.resolve(__dirname, `./../dist/index.html`),
@@ -29,24 +38,22 @@ app.get("/", (req, res) => {
   // split from {content}, take 2 parts say head and tail, then join the tail with the data
   const [head, tail] = html.split(`<span id="content"/>`);
   res.write(head);
-  // call service - since this is the only call, I'm not moving it to any other file
-  fetch(requUrl)
-    .then((response) => response.json())
-    .then((jsonData) => {
-      // join the response in tail on {script} section in template
-      const newTail = tail.split(`<span id="script"/>`).join(`
+
+  // join the response in tail on {script} section in template
+  const newTail = tail.split(`<span id="script"/>`).join(`
             <script id="ssr__script">
-              window.__SPACEX_DATA__ = ${JSON.stringify(jsonData)}
+              window.__SPACEX_DATA__ = ${JSON.stringify(spacexData)}
             </script>
             `);
-      // our main component
-      const stream = renderToNodeStream(<Main />);
-      stream.pipe(res, { end: false });
-      stream.on("end", () => {
-        res.write(newTail);
-        res.end();
-      });
-    });
+  // our main component
+  const stream = renderToNodeStream(<ReduxProvider store={store}>
+    <Main />
+  </ReduxProvider>);
+  stream.pipe(res, { end: false });
+  stream.on("end", () => {
+    res.write(newTail);
+    res.end();
+  });
 });
 
 app.use(express.static(path.join(__dirname, "./../dist")));

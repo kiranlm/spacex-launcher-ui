@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import loadable from "@loadable/component";
-import { getSpacexData } from "../../services/api";
+import { useSelector, useDispatch } from "react-redux";
 import { getQueryParams, makeQueryString } from "../../helpers";
 import { history } from "../Main";
-import Loading from "../Loading";
+import Loading from "./Loading";
+import { getSpacexAction } from "../../redux/actions";
 
-const Mission = loadable(() => import("../Mission"), { ssr: true });
-const Filter = loadable(() => import("../Filter"), { ssr: true });
+const Footer = loadable(() => import("./Footer"), { ssr: true });
+const Mission = loadable(() => import("./Mission"), { ssr: true });
+const Filter = loadable(() => import("./Filter"), { ssr: true });
 
 const Launch = () => {
   // Query params from url
@@ -19,26 +21,20 @@ const Launch = () => {
     ...queryParams,
   };
 
-  // states
-  const [spacexData, setSpacexData] = useState([]); // API data holds in this state
-  const [loading, setLoading] = useState(false); // loading indication
-  // Filters
+  // redux data, initiallt we will use server data from window and remove it from window
+  const { spacexData = window.__SPACEX_DATA__,loading } = useSelector((state) => state);
+  delete window.__SPACEX_DATA__;
+  // filter state
   const [filters, setFilters] = useState(initialFilters);
+
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
-    // window.__SPACEX_DATA__ will contain initial data from server as stringified format
-    // If data then it takes else get from API call
-    if (window.__SPACEX_DATA__) {
-      setSpacexData(window.__SPACEX_DATA__);
-    } else {
+    // If no data, then call API
+    if (!spacexData) {
       const query = makeQueryString({ ...filters, ...{ limit: 100 } });
-      setLoading(true);
-      getSpacexData(query)
-        .then((data) => {
-          setSpacexData(data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      dispatch(getSpacexAction(query))
     }
   }, []); //eslint-disable-line
   // On changing filter, trigger API call
@@ -69,18 +65,12 @@ const Launch = () => {
         pathname: "/",
         search: query,
       });
-      setLoading(true);
-      getSpacexData(query)
-        .then((data) => {
-          setSpacexData(data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      dispatch(getSpacexAction(query))
     }
   }, [filters]);
 
   return (
+    <>
     <div className="mainContainer">
       {loading && <Loading />}
       <div className="filterContainer">
@@ -94,6 +84,8 @@ const Launch = () => {
           : !loading && <h3 className="noDataMessage">Not enough data !</h3>}
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

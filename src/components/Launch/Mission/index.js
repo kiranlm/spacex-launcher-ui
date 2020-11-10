@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import LazyImage from "./LazyImage";
+
 /**
  *
  * @param {Object} props | contains mission details

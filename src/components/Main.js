@@ -4,8 +4,6 @@ import loadable from "@loadable/component";
 import "../app.scss";
 
 const Launch = loadable(() => import("./Launch"), { ssr: true });
-const Footer = loadable(() => import("./Footer"), { ssr: true });
-
 
 // Browserhistory needs DOM, but we need it after server rendering
 const selectedHistory =
@@ -18,7 +16,6 @@ const Main = () => (
     <>
       <h2>SpaceX Launch Programs</h2>
       <Launch />
-      <Footer />
     </>
   );
 export default Main;
