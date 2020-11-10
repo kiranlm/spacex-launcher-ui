@@ -1,70 +1,84 @@
 {
-  "name": "spacex-launcher",
-  "version": "1.0.0",
-  "description": "SpaceX Launcher list using React SSR.",
-  "main": "index.js",
-  "author": "Kiran LM <kiran.lm96@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kiranlm/spacex-launcher-ui"
-  },
-  "dependencies": {
-    "@loadable/component": "^5.14.1",
-    "compression": "^1.7.4",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.1",
-    "prop-types": "^15.7.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-router-dom": "^5.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "clean-webpack-plugin": "^2.0.1",
-    "copy-webpack-plugin": "^6.3.0",
-    "css-loader": "^2.1.1",
-    "css-minimizer-webpack-plugin": "^1.1.5",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5",
-    "html-webpack-plugin": "^3.2.0",
-    "ignore-loader": "^0.1.2",
-    "jest": "^26.6.3",
-    "mini-css-extract-plugin": "^0.6.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.3.1",
-    "webpack-merge": "^4.2.1",
-    "webpack-node-externals": "^1.7.2",
-    "workbox-webpack-plugin": "^5.1.4"
-  },
-  "scripts": {
-    "test": "jest",
-    "start": "node ./dist-ssr/index.js",
-    "build": "webpack --config ./webpack-config/webpack.prod.js",
-    "start:dev": "webpack-dev-server --config ./webpack-config/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
-  },
-  "heroku-run-build-script": true,
-  "jest": {
-    "verbose": true,
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    "name": "spacex-launcher",
+    "version": "1.0.0",
+    "description": "SpaceX Launcher list using React SSR.",
+    "main": "index.js",
+    "author": "Kiran LM <kiran.lm96@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kiranlm/spacex-launcher-ui"
     },
-    "setupFiles": [
-      "./src/setupTest.js"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(css|less|scss)$": "babel-jest"
+    "dependencies": {
+        "@loadable/component": "^5.14.1",
+        "compression": "^1.7.4",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.5",
+        "eslint-loader": "^4.0.2",
+        "express": "^4.17.1",
+        "history": "^5.0.0",
+        "node-fetch": "^2.6.1",
+        "prop-types": "^15.7.2",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-router-dom": "^5.2.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3",
+        "@babel/preset-react": "^7.0.0",
+        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.0.5",
+        "clean-webpack-plugin": "^2.0.1",
+        "copy-webpack-plugin": "^6.3.0",
+        "css-loader": "^2.1.1",
+        "css-minimizer-webpack-plugin": "^1.1.5",
+        "eslint": "^7.13.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-html": "^6.1.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.21.5",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "html-webpack-plugin": "^3.2.0",
+        "ignore-loader": "^0.1.2",
+        "jest": "^26.6.3",
+        "mini-css-extract-plugin": "^0.6.0",
+        "node-sass": "^4.11.0",
+        "prettier": "^2.1.2",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "uglifyjs-webpack-plugin": "^2.2.0",
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12",
+        "webpack-dev-server": "^3.3.1",
+        "webpack-merge": "^4.2.1",
+        "webpack-node-externals": "^1.7.2",
+        "workbox-webpack-plugin": "^5.1.4"
+    },
+    "scripts": {
+        "test": "jest",
+        "start": "node ./dist-ssr/index.js",
+        "build": "webpack --config ./webpack-config/webpack.prod.js",
+        "start:dev": "webpack-dev-server --config ./webpack-config/webpack.dev.js --host 0.0.0.0  --history-api-fallback",
+        "lint": "eslint --config=./.eslintrc src/**/**/*.js"
+    },
+    "heroku-run-build-script": true,
+    "jest": {
+        "verbose": true,
+        "testPathIgnorePatterns": [
+            "/node_modules/"
+        ],
+        "transform": {
+            "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+        },
+        "setupFiles": [
+            "./src/setupTest.js"
+        ],
+        "moduleNameMapper": {
+            "^.+\\.(css|less|scss)$": "babel-jest"
+        }
     }
-  }
 }

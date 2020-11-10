@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Filter = ({ filters, setFilters }) => {
-  return (
+const Filter = ({ filters, setFilters }) => (
     <div className="filter">
       <div className="filterWrapper">
         <h3>Filters</h3>
@@ -13,12 +12,13 @@ const Filter = ({ filters, setFilters }) => {
             .fill()
             .map((_, i) => (
               <button
+              type="button"
                 onClick={() => {
-                  setFilters({ ...filters, ...{ launchYear: 2006 + i } });
+                  setFilters({ ...filters, ...{ launch_year: 2006 + i } });
                 }}
-                aria-label={2006 + i}
+                aria-label={(2006 + i).toString()}
                 className={`filterItem ${
-                  parseInt(filters.launchYear) === 2006 + i ? "selected" : ""
+                  parseInt(filters.launch_year) === 2006 + i ? "selected" : ""
                 }`}
                 key={`year-${i}`}>
                 {2006 + i}
@@ -31,27 +31,29 @@ const Filter = ({ filters, setFilters }) => {
         <hr />
         <div className="filters">
           <button
+          type="button"
             className={`filterItem ${
-              filters.launchSuccess === "true" || filters.launchSuccess === true
+              filters.launch_success === "true" || filters.launch_success === true
                 ? "selected"
                 : ""
             }`}
-            aria-label="True"
+            aria-label="launch-true"
             onClick={() => {
-              setFilters({ ...filters, ...{ launchSuccess: true } });
+              setFilters({ ...filters, ...{ launch_success: true } });
             }}>
             True
           </button>
           <button
+          type="button"
             className={`filterItem ${
-              filters.launchSuccess === false ||
-              filters.launchSuccess === "false"
+              filters.launch_success === false ||
+              filters.launch_success === "false"
                 ? "selected"
                 : ""
             }`}
-            aria-label="False"
+            aria-label="launch-false"
             onClick={() => {
-              setFilters({ ...filters, ...{ launchSuccess: false } });
+              setFilters({ ...filters, ...{ launch_success: false } });
             }}>
             False
           </button>
@@ -62,34 +64,37 @@ const Filter = ({ filters, setFilters }) => {
         <hr />
         <div className="filters">
           <button
+          type="button"
             className={`filterItem ${
-              filters.landSuccess === "true" || filters.landSuccess === true
+              filters.land_success === "true" || filters.land_success === true
                 ? "selected"
                 : ""
             }`}
-            aria-label="True"
+            aria-label="land-true"
             onClick={() => {
-              setFilters({ ...filters, ...{ landSuccess: true } });
+              setFilters({ ...filters, ...{ land_success: true } });
             }}>
             True
           </button>
           <button
+          type="button"
             className={`filterItem ${
-              filters.landSuccess === false || filters.landSuccess === "false"
+              filters.land_success === false || filters.land_success === "false"
                 ? "selected"
                 : ""
             }`}
-            aria-label="False"
+            aria-label="land-false"
             onClick={() => {
-              setFilters({ ...filters, ...{ landSuccess: false } });
+              setFilters({ ...filters, ...{ land_success: false } });
             }}>
             False
           </button>
         </div>
         <div className="filterReset">
           <button
+          type="button"
             className="filterItem"
-            aria-label="Reset"
+            aria-label="reset"
             onClick={() => {
               setFilters({ limit: 100 });
             }}>
@@ -99,16 +104,15 @@ const Filter = ({ filters, setFilters }) => {
       </div>
     </div>
   );
-};
 
 Filter.propTypes = {
   filters: PropTypes.shape({
-    launchYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    landSuccess: PropTypes.PropTypes.oneOfType([
+    launch_year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    land_success: PropTypes.PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.bool,
     ]),
-    landSuccess: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    launch_success:PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     limit: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   }),
   setFilters: PropTypes.func,

@@ -11,11 +11,11 @@ const Filter = loadable(() => import("../Filter"), { ssr: true });
 const Launch = () => {
   // Query params from url
   const queryParams = getQueryParams();
-  let initialFilters = {
+  const initialFilters = {
     limit: null,
-    launchYear: null,
-    launchSuccess: null,
-    landSuccess: null,
+    launch_year: null,
+    launch_success: null,
+    land_success: null,
     ...queryParams,
   };
 
@@ -40,31 +40,29 @@ const Launch = () => {
           setLoading(false);
         });
     }
-  }, []);
+  }, []); //eslint-disable-line
   // On changing filter, trigger API call
   const useEffectExceptOnMount = (effect, dependencies) => {
     const mounted = useRef(false);
     useEffect(() => {
-      if (mounted.current) {
+      if (!mounted.current) {
+        mounted.current = true;
+      } else {
         const unmount = effect();
         return () => unmount && unmount();
-      } else {
-        mounted.current = true;
       }
-    }, dependencies);
+    }, dependencies); //eslint-disable-line
 
     // Reset on unmount for the next mount.
-    useEffect(() => {
-      return () => (mounted.current = false);
-    }, []);
+    useEffect(() => () => (mounted.current = false), []);
   };
   useEffectExceptOnMount(() => {
     // Call only if filters are not null
     if (
       filters.limit !== null ||
-      filters.landSuccess !== null ||
-      filters.launchSuccess !== null ||
-      filters.launchYear !== null
+      filters.land_success !== null ||
+      filters.launch_success !== null ||
+      filters.launch_year !== null
     ) {
       const query = makeQueryString(filters);
       history.push({

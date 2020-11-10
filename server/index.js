@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
   res.write(head);
   // call service - since this is the only call, I'm not moving it to any other file
   fetch(requUrl)
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((jsonData) => {
       // join the response in tail on {script} section in template
       const newTail = tail.split(`<span id="script"/>`).join(`

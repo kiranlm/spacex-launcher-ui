@@ -1,12 +1,11 @@
 import React from "react";
-import { createBrowserHistory } from "history";
-import { createMemoryHistory } from "history";
+import { createBrowserHistory,createMemoryHistory } from "history";
 import loadable from "@loadable/component";
+import "../app.scss";
 
 const Launch = loadable(() => import("./Launch"), { ssr: true });
 const Footer = loadable(() => import("./Footer"), { ssr: true });
 
-import "../app.scss";
 
 // Browserhistory needs DOM, but we need it after server rendering
 const selectedHistory =
@@ -15,13 +14,11 @@ const selectedHistory =
 // exporting to use in Launch component
 export const history = selectedHistory();
 
-const Main = () => {
-  return (
-    <React.Fragment>
+const Main = () => (
+    <>
       <h2>SpaceX Launch Programs</h2>
       <Launch />
       <Footer />
-    </React.Fragment>
+    </>
   );
-};
 export default Main;

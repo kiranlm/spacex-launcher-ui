@@ -55,8 +55,8 @@ hr {
   align-items: flex-start;
   padding: 0.5rem;
   .filterContainer {
-    width: 13rem;
-    margin-right: 0.5rem;
+    width: 24%;
+    max-width: 15rem;
     .filter {
       background: $white;
       margin: 0 auto;
@@ -114,7 +114,7 @@ hr {
   }
   .missionContainer {
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 0 1rem;
     display: grid;
     grid-gap: 1rem;
     .mission {
@@ -126,7 +126,7 @@ hr {
       flex-direction: column;
       align-items: flex-start;
       border-radius: 7px;
-      width: 215px;
+      width: 80%;
       a {
         color: $blueLink;
         font-weight: bold;
@@ -184,8 +184,8 @@ hr {
 }
 
 .loading {
-  left: 50%;
-  top: 50%;
+  left: calc(50% - 50px);;
+  top: calc(50% - 50px);;
   position: absolute;
   display: inline-block;
   width: 50px;
@@ -206,6 +206,7 @@ hr {
       max-width: 300px;
     }
     .missionContainer {
+      margin: 0 auto;
       .mission {
         width: 100%;
         padding: 1rem 0rem;
@@ -232,9 +233,16 @@ hr {
   }
 }
 // Large screens
-@media (min-width: 1025px) {
+@media  (max-width: 1440px) and (min-width: 1025px) {
   .missionContainer {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+// Very Large screens
+@media (min-width: 1441px) {
+  .missionContainer {
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
   }
 }
 // For loading spinner

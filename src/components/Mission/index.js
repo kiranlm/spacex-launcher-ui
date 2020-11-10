@@ -17,9 +17,9 @@ const Mission = (props) => {
             alt={`image-${mission.flight_number}`}
           />
         </div>
-        <a href="#">
+        <h4 className="mission-name">
           {mission.mission_name} #{mission.flight_number}
-        </a>
+        </h4>
         <div>Mission Ids:</div>
 
         {mission.mission_id &&
@@ -64,6 +64,7 @@ Mission.propTypes = {
   mission: PropTypes.shape({
     flight_number: PropTypes.number,
     launch_year: PropTypes.string,
+    mission_name: PropTypes.string,
     launch_success: PropTypes.bool,
     landSuccess: PropTypes.bool,
     links: PropTypes.shape({

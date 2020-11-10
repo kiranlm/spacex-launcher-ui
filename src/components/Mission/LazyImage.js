@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
 /**
  * Component for image lazy loading
@@ -29,4 +30,10 @@ function LazyImage({ src, alt }) {
     />
   );
 }
+
+LazyImage.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+};
+
 export default LazyImage;
