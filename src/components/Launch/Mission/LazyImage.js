@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 /**
@@ -10,24 +10,21 @@ import PropTypes from "prop-types";
  * @returns {HTMLElement} | image tag with loaded image src
  */
 function LazyImage({ src, alt }) {
+  const [loaded, setLoaded] = useState(false);
   const imgRef = useRef();
   useEffect(() => {
-    let observer;
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          imgRef.current.src = src
-          observer = observer.disconnect()
-        }
-      })
-    })
-    observer.observe(imgRef.current);
-    return () => observer && observer.disconnect()
-  }, [src])
+    if (imgRef.current && imgRef.current.complete) {
+      setLoaded(true);
+    }
+  }, []);
   return (
     <img
+      loading="lazy"
+      src={src}
       alt={alt}
       ref={imgRef}
+      onLoad={() => setLoaded(true)}
+      className={loaded ? "loaded" : ""}
       width="170"
       height="170"
     />
