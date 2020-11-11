@@ -127,10 +127,7 @@ main.test.js
 
 ```
 
-  
-
-#### Working demo
-
+### Working demo
   
 
 [Click here to see the demo](https://spacex-launcher-ui.herokuapp.com)
