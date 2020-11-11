@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+import { PLACEHOLDER_IMAGE } from "../../../constants";
 
 /**
  * Component for image lazy loading
@@ -10,7 +11,6 @@ import PropTypes from "prop-types";
  * @returns {HTMLElement} | image tag with loaded image src
  */
 function LazyImage({ src, alt }) {
-  const placeholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAQAAACXfxwJAAAA6klEQVR42u3QQQEAAAQEMNe/rAaU4LdFWHqKY5EqVapUpEqVilSpUpEqVSpSpUpFqlSpSJUqFalSpSJVqlSkSpUqFalSpSJVqlSkSpWKVKlSkSpVKlKlSkWqVKlIlSoVqVKlSkWqVKlIlSoVqVKlIlWqVKRKlYpUqVKRKlUqUqVKRapUqVKRKlUqUqVKRapUqUiVKhWpUqUiVapUpEqVilSpUpEqVapUqVKlSkWqVKlIlSoVqVKlIlWqVKRKlYpUqVKRKlUqUqVKRapUqVKRKlUqUqVKRapUqUiVKhWpUqUiVapUpEqVitRfC5uXSXCNJu7OAAAAAElFTkSuQmCC";
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef();
   useEffect(() => {
@@ -21,7 +21,7 @@ function LazyImage({ src, alt }) {
   return (
     <img
       loading="lazy"
-      src={!loaded ? placeholder : src}
+      src={!loaded ? PLACEHOLDER_IMAGE : src}
       alt={alt}
       ref={imgRef}
       onLoad={() => setLoaded(true)}

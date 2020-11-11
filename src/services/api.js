@@ -1,7 +1,6 @@
 // Base url
 import fetch from "node-fetch"
-
-const url = "https://api.spacexdata.com/v3/launches";
+import { API_URL } from "../constants";
 
 /**
  * SpaceX detail API call using fetch
@@ -12,6 +11,6 @@ const url = "https://api.spacexdata.com/v3/launches";
  */
 export function getSpacexData(query) {
   return fetch(
-    `${url}${query.trim() !== "" ? query : ""}`
+    `${API_URL}${query.trim() !== "" ? query : ""}`
   ).then((response) => response.json());
 }
