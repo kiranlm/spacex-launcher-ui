@@ -9,6 +9,16 @@ import LazyImage from "./LazyImage";
 const Mission = (props) => {
   // Individial mission details
   const { mission } = props;
+  const landSuccessArray = mission.rocket &&
+    mission.rocket.first_stage &&
+    mission.rocket.first_stage.cores &&
+    Array.isArray(mission.rocket.first_stage.cores) && mission.rocket.first_stage.cores;
+  let landSuccess = landSuccessArray[0] && landSuccessArray[0].land_success;
+  if (landSuccessArray.length > 1) {
+    landSuccess = Boolean(landSuccessArray.find(
+      (item) => item.land_success === true
+    ))
+  }
   return (
     <div className="mission">
       <div className="misionDetails">
@@ -40,19 +50,12 @@ const Mission = (props) => {
         </div>
         <div>
           Successful Launch:{" "}
-          <span>{Boolean(mission.launch_success).toString()}</span>
+          <span>{mission.launch_success !==null ? mission.launch_success.toString() : "null"}</span>
         </div>
         <div>
           Successful Landing:{" "}
           <span>
-            {
-              (mission.rocket &&
-                mission.rocket.first_stage &&
-                mission.rocket.first_stage.cores &&
-                Array.isArray(mission.rocket.first_stage.cores) &&
-                mission.rocket.first_stage.cores.find(
-                  (item) => item.land_success === true
-                ) || false).toString()}
+            {landSuccess !== null ? landSuccess.toString() : "null"}
           </span>
         </div>
       </div>
