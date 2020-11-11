@@ -45,15 +45,14 @@ const Mission = (props) => {
         <div>
           Successful Landing:{" "}
           <span>
-            {Boolean(
-              mission.rocket &&
+            {
+              (mission.rocket &&
                 mission.rocket.first_stage &&
                 mission.rocket.first_stage.cores &&
                 Array.isArray(mission.rocket.first_stage.cores) &&
                 mission.rocket.first_stage.cores.find(
-                  (item) => item.land_success
-                )
-            ).toString()}
+                  (item) => item.land_success === true
+                ) || false).toString()}
           </span>
         </div>
       </div>
