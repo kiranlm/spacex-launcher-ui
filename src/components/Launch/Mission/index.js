@@ -18,7 +18,7 @@ const Mission = (props) => {
             alt={`image-${mission.flight_number}`}
           />
         </div>
-        <h4 className="mission-name">
+        <h4 className="missionName">
           {mission.mission_name} #{mission.flight_number}
         </h4>
         <div>Mission Ids:</div>

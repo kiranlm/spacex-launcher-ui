@@ -135,8 +135,7 @@ hr {
         text-decoration: none;
       }
       .misionDetails {
-        margin: 0 auto;
-        width: 90%;
+        width: 100%;
         > div {
           font-weight: 700;
           font-weight: 700;
@@ -151,6 +150,9 @@ hr {
           font-style: italic;
           font-size: 17px;
           color: $blueText;
+        }
+        .missionName{
+          color:$blueLink;
         }
         .imageContainer {
           background: $bgGrey;
@@ -213,6 +215,8 @@ hr {
         margin: 0.5rem auto;
         max-width: 300px;
         .misionDetails {
+          width: 90%;
+          margin: 0 auto;
           .imageContainer {
             width: auto;
             height: auto;

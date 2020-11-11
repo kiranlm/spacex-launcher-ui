@@ -42,7 +42,7 @@ app.get("/", async (req, res) => {
   // join the response in tail on {script} section in template
   const newTail = tail.split(`<span id="script"/>`).join(`
             <script id="ssr__script">
-              window.__SPACEX_DATA__ = ${JSON.stringify(spacexData)}
+              window.__SPACEX_DATA__ = ${JSON.stringify(spacexData)};
             </script>
             `);
   // our main component
