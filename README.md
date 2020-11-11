@@ -56,73 +56,39 @@ An application that lists all the launch programs by SpaceX. There will be a lef
 
   
 ```
-
 .
-
 └───dist
-
 | ...
-
 └───dist-ssr
-
 | ...
-
 └───package.json
-
 └───Dockerfile
-
 └───.circleci
-
 │
-
 └───src
-
 │ └───components
-
 │ │ ... all the functional components
-
 │ └───services
-
 │ | ... service files
-
 | App.js
-
 | app.scss
-
 │ └───helpers
-
 | |
-
 | ... helper functions
-
 │
-
 └───webpack-config
-
 | |
-
 | webpack.common.js
-
 | webpack.dev.js
-
 | webpack.prod.js
-
 └───server
-
 | |
-
 | index.js
-
 └───static
-
 | |
-
 | ... static files like images, icons etc
-
 └───spec
-
 |
-
 main.test.js
 
 ```
@@ -160,15 +126,21 @@ main.test.js
 
   
 
-![enter image description here](https://images2.imgbox.com/42/67/zDPMmTg4_o.png)
+![enter image description here](https://images2.imgbox.com/04/96/9Huydixf_o.png)
 
   
+
+#### Tablet View
+
+  
+
+![enter image description here](https://images2.imgbox.com/90/77/68HD7gI1_o.png)
 
 #### Mobile View
 
   
 
-![enter image description here](https://images2.imgbox.com/12/6b/9BcXDyBj_o.png)
+![enter image description here](https://images2.imgbox.com/88/00/VObVqq0q_o.png)
 
   
 
